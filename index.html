@@ -19,6 +19,10 @@
       <div id="unity-warning"> </div>
     </div>
     <script>
+
+      if (navigator.userAgent.includes("Telegram")) {
+    alert("Откройте в браузере для корректной работы");
+}
       var canvas = document.querySelector("#unity-canvas");
 
       // Shows a temporary message banner/ribbon for a few seconds, or
