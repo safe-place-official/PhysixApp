@@ -19,10 +19,46 @@
       <div id="unity-warning"> </div>
     </div>
     <script>
+const isTelegram = navigator.userAgent.includes("Telegram");
 
-      if (navigator.userAgent.includes("Telegram")) {
-    alert("Откройте в браузере для корректной работы");
+if (isTelegram) {
+  document.body.innerHTML = `
+    <div style="
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      height:100vh;
+      background:#0b1f4b;
+      color:white;
+      font-family:sans-serif;
+      text-align:center;
+      padding:20px;
+    ">
+      <div>
+        <h2>⚠️ Не поддерживается</h2>
+        <p>Откройте приложение в браузере</p>
+        <button onclick="openExternal()" style="
+          padding:15px 25px;
+          font-size:18px;
+          border:none;
+          border-radius:10px;
+          background:#4da3ff;
+          color:white;
+          cursor:pointer;
+        ">
+          Открыть в браузере
+        </button>
+      </div>
+    </div>
+  `;
+
+  function openExternal() {
+    window.open(window.location.href, "_blank");
+  }
+
+  throw new Error("Blocked in Telegram WebView");
 }
+
       var canvas = document.querySelector("#unity-canvas");
 
       // Shows a temporary message banner/ribbon for a few seconds, or
